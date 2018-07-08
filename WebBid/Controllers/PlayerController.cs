@@ -11,6 +11,8 @@ namespace WebBid.Controllers
 {
     public class PlayerController : Controller
     {
+        private SessionDataAcceess _session = new SessionDataAcceess();
+
         [HttpGet]
         public ActionResult Edit(Player player)
         {
@@ -22,6 +24,31 @@ namespace WebBid.Controllers
         public ActionResult New()
         {
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult SaveNewPlayer(Player player)
+        {
+            if (ModelState.IsValid)
+            {
+                player.PlayerGuid = Guid.NewGuid();
+                return RedirectToAction("AddPlayer", "MatchPreparation", player);
+            }
+
+            var model = new PlayerEditionViewModel() { Player = player };
+            return View("New", model);
+        }
+
+        [HttpPost]
+        public ActionResult SaveEditedPlayer(Player player)
+        {
+            if (ModelState.IsValid)
+            {
+                return RedirectToAction("UpdatePlayer", "MatchPreparation", player);
+            }
+
+            var model = new PlayerEditionViewModel() { Player = player };
+            return View("Edit", model);
         }
     }
 }

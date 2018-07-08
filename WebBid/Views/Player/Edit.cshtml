@@ -6,15 +6,18 @@
 
 <h2>Edit player</h2>
 
-@using (Html.BeginForm("UpdatePlayer", "MatchPreparation"))
+@using (Html.BeginForm("SaveEditedPlayer", "Player"))
 {
     <div class="form-group">
         @Html.LabelFor(m => m.Player.Name)
         @Html.TextBoxFor(m => m.Player.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Player.Name)
+        @Html.ValidationMessageFor(m => m.Player)
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Player.Account)
         @Html.TextBoxFor(m => m.Player.Account, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Player.Account)
     </div>
 
     @Html.HiddenFor(m => m.Player.PlayerGuid)

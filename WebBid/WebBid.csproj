@@ -154,6 +154,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Binders\MatchParametersBinder.cs" />
+    <Compile Include="Controllers\SessionDataAcceess.cs" />
     <Compile Include="Migrations\201807031446576_InitialModel.cs" />
     <Compile Include="Migrations\201807031446576_InitialModel.Designer.cs">
       <DependentUpon>201807031446576_InitialModel.cs</DependentUpon>
@@ -176,6 +177,8 @@
     <Compile Include="Models\Entities\Deal.cs" />
     <Compile Include="Models\Entities\Match.cs" />
     <Compile Include="Models\Entities\Player.cs" />
+    <Compile Include="Models\Validators\DecimalRangeValidator.cs" />
+    <Compile Include="Models\Validators\PlayerValidator.cs" />
     <Compile Include="Models\ViewModels\MatchPreparationViewModel.cs" />
     <Compile Include="Models\ViewModels\PlayerEditionViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -188,7 +191,7 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
+    <Content Include="Content\site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">

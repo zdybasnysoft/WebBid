@@ -6,18 +6,20 @@
 
 <h2>Create Player</h2>
 
-@using (Html.BeginForm("AddPlayer", "MatchPreparation"))
+@using (Html.BeginForm("SaveNewPlayer", "Player"))
 {
     <div class="form-group">
         @Html.LabelFor(m => m.Player.Name)
         @Html.TextBoxFor(m => m.Player.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Player.Name)
+        @Html.ValidationMessageFor(m => m.Player)
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Player.Account)
         @Html.TextBoxFor(m => m.Player.Account, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Player.Account)
     </div>
-
-    @Html.HiddenFor(m => m.Player.PlayerGuid)
+    
     <button type="submit" class="btn btn-success">Save</button>
 }
 

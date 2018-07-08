@@ -11,51 +11,32 @@ namespace WebBid.Controllers
 {
     public class MatchPreparationController : Controller
     {
-        private const string KEY = "sessionKey";
         private ApplicationContext _context = new ApplicationContext();
+        private SessionDataAcceess _session = new SessionDataAcceess();
 
-        private MatchPreparationViewModel SessionModel
-        {
-            get
-            {
-                if (!(Session[KEY] is MatchPreparationViewModel model))
-                {
-                    model = new MatchPreparationViewModel()
-                    {
-                        Match = EntitiesFactory.CreateMatch()
-                    };
-                    Session[KEY] = model;
-                }
-                return model;
-            }
-        }
-
-        private Match SessionMatch => SessionModel.Match;
-
-        private ICollection<Player> SessionPlayers => SessionMatch.Players;
 
         public ActionResult Index()
         {
-            return View("MatchPreparation", SessionModel);
+            return View("MatchPreparation", _session.matchPreparationViewModel);
         }
 
         public ActionResult AddPlayer(Player player)
         {
-            SessionPlayers.Add(player);
+            _session.Players.Add(player);
 
             return RedirectToAction("Index");
         }
 
         public ActionResult EditPlayer(Guid playerGuid)
         {
-            var player = SessionPlayers.First(p => p.PlayerGuid == playerGuid);
+            var player = _session.Players.First(p => p.PlayerGuid == playerGuid);
          
             return RedirectToAction("Edit", "Player", player);
         }
 
         public ActionResult UpdatePlayer(Player player)
         {
-            var sessionPlayer = SessionPlayers.First(p => p.PlayerGuid == player.PlayerGuid);
+            var sessionPlayer = _session.Players.First(p => p.PlayerGuid == player.PlayerGuid);
 
             sessionPlayer.Name = player.Name;
             sessionPlayer.Account = player.Account;
@@ -65,7 +46,7 @@ namespace WebBid.Controllers
 
         public ActionResult RemovePlayer(Guid playerGuid)
         {
-            var players = SessionPlayers;
+            var players = _session.Players;
             players.Remove(players.First(p => p.PlayerGuid == playerGuid));
 
             return RedirectToAction("Index");
@@ -74,7 +55,7 @@ namespace WebBid.Controllers
         [HttpPost]
         public ActionResult Save()
         {
-            var match = SessionMatch;
+            var match = _session.Match;
             if (match.Id == 0)
             {
                 _context.Matches.Add(match);
