@@ -1,0 +1,23 @@
+﻿@model WebBid.Models.ViewModels.PlayerEditionViewModel
+@{
+    ViewBag.Title = "Edit player";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>Edit player</h2>
+
+@using (Html.BeginForm("UpdatePlayer", "MatchPreparation"))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.Player.Name)
+        @Html.TextBoxFor(m => m.Player.Name, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Player.Account)
+        @Html.TextBoxFor(m => m.Player.Account, new { @class = "form-control" })
+    </div>
+
+    @Html.HiddenFor(m => m.Player.PlayerGuid)
+    <button type="submit" class="btn btn-success">Save</button>
+}
+

@@ -1,0 +1,18 @@
+﻿@model WebBid.Models.Entities.Player
+
+
+<div class="playerTable">
+    <div class="playerTableBody">
+        <div class="playerTableRow">
+            <div class="playerTableCell">
+                @Html.Label(Model.Name)
+
+            </div>
+        </div>
+        <div class="playerTableRow">
+            <div class="playerTableCell">
+                @Html.Label(Model.Account.ToString())
+            </div>
+        </div>
+    </div>
+</div>

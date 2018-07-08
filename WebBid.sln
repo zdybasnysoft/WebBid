@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2035
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebBid", "WebBid\WebBid.csproj", "{BFA18781-E4BD-4869-9E57-6FAAA5574B49}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BFA18781-E4BD-4869-9E57-6FAAA5574B49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFA18781-E4BD-4869-9E57-6FAAA5574B49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFA18781-E4BD-4869-9E57-6FAAA5574B49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFA18781-E4BD-4869-9E57-6FAAA5574B49}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8326C1F5-4773-40FE-86AB-819946BB53AC}
+	EndGlobalSection
+EndGlobal
