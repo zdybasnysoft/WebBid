@@ -9,31 +9,31 @@ using WebBid.Models.Entities;
 
 namespace WebBid.Models.Validators
 {
-    public class DecimalRangeValidator : RangeAttribute
+    public class DecimalRangeValidator : ValidationAttribute
     {
         private new const string ErrorMessage = "The field Amount of chips must be between 1 and 1000000.";
-        private string pattern;
+        private RangeAttribute rangeAttr;
+        private RegularExpressionAttribute regexAttr;
 
         public DecimalRangeValidator(double minimum, double maximum, int scale)
-            : base(minimum, maximum)
         {
-            ;
+            rangeAttr = new RangeAttribute(minimum, maximum);
+
             var patternBeforeSeparator = @"^-?\d*";
             var patternAfterSeparator = @"([.,]\d{0," + scale + @"})?$";
 
-            this.pattern = patternBeforeSeparator + patternAfterSeparator;
+            var pattern = patternBeforeSeparator + patternAfterSeparator;
+            regexAttr = new RegularExpressionAttribute(pattern);
         }
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
-            var regexAttr = new RegularExpressionAttribute(this.pattern);
-            var regexResult = regexAttr.IsValid(value);
-            var rangeResult = base.IsValid(value);
+            bool regexResult = regexAttr.IsValid(value);
+            var rangeResult = rangeAttr.IsValid(value);
 
             return (regexResult && rangeResult) ?
                 ValidationResult.Success :
                 new ValidationResult(ErrorMessage);
-
         }
     }
 }
